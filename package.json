@@ -1,0 +1,11 @@
+{
+  "name": "@pastash/input_dummy",
+  "version": "1.0.4",
+  "description": "Dummy input plugin for Pastash",
+  "main": "input_dummy.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
