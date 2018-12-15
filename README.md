@@ -1,3 +1,5 @@
+<img src="http://i.imgur.com/wYjsCqz.png"/>
+
 # pastash_input_dummy
 Test Plugin for Pastash Next-Gen, Do NOT use this!
 
