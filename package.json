@@ -1,6 +1,6 @@
 {
   "name": "@pastash/input_dummy",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Dummy input plugin for Pastash",
   "main": "input_dummy.js",
   "scripts": {
