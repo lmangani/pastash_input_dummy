@@ -1,53 +1,30 @@
 var base_input = require('@pastash/pastash').base_input,
-  dgram = require('dgram'),
   util = require('util'),
   logger = require('@pastash/pastash').logger;
 
-function InputUdp() {
+function InputDummy() {
   base_input.BaseInput.call(this);
   this.mergeConfig(this.unserializer_config());
   this.mergeConfig({
-    name: 'Udp',
-    host_field: 'host',
-    port_field: 'port',
-    optional_params: ['type'],
+    name: 'Dummy',
     start_hook: this.start,
   });
 }
 
-util.inherits(InputUdp, base_input.BaseInput);
+util.inherits(InputDummy, base_input.BaseInput);
 
-InputUdp.prototype.start = function(callback) {
-  logger.info('Start listening on udp', this.host + ':' + this.port);
-
-  this.server = dgram.createSocket('udp4');
-
-  this.server.on('message', function(data, remote) {
-    this.unserialize_data(data, function(parsed) {
-      this.emit('data', parsed);
-    }.bind(this), function(data) {
-      this.emit('data', {
-        'message': data.toString().trim(),
-        'host': remote.address,
-        'udp_port': this.port,
-        'type': this.type,
+InputDummy.prototype.start = function(callback) {
+  logger.info('Start Dummy Input');
+  this.emit('data', {
+        'message': 'One Dummy String!' 
       });
-    }.bind(this));
-  }.bind(this));
-
-  this.server.on('error', function(err) {
-    this.emit('error', err);
-  }.bind(this));
-
-  this.server.bind(this.port, this.host, callback);
 };
 
-InputUdp.prototype.close = function(callback) {
-  logger.info('Closing listening udp', this.host + ':' + this.port);
-  this.server.close();
+InputDummy.prototype.close = function(callback) {
+  logger.info('Closing Dummy Input');
   callback();
 };
 
 exports.create = function() {
-  return new InputUdp();
+  return new InputDummy();
 };
